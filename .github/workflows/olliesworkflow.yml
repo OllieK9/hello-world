@@ -1,0 +1,16 @@
+name: Deploy Static HTML to Azure
+on:
+  push:
+    branches:
+      - main # Replace with your branch (e.g., main)
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'olliek9app' # Replace with your Azure App Service name
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: '.' # Deploys all files in the repo root
